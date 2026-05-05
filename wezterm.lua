@@ -4,19 +4,16 @@ local wezterm = require("wezterm")
 -- This will hold the configuration.
 local config = wezterm.config_builder()
 
--- Execute Powershell as default program
-config.default_prog = { "pwsh.exe", "-NoLogo", "-NoProfileLoadTime" }
+-- Configuration
+require("config.shell").apply_to_config(config)
+require("config.appearance").apply_to_config(config)
+require("config.keymaps").apply_to_config(config)
 
--- Keybindings
-config.leader = { key = "b", mods = "CTRL" }
-config.keys = require("config.keybindings")
+-- Plugins
+-- require("config.plugins.theme_rotator").apply_to_config(config)
+require("plugins.bar").apply_to_config(config)
+require("plugins.smart_splits").apply_to_config(config)
+require("plugins.wez-tmux.plugin").apply_to_config(config, {})
 
-config.window_decorations = "RESIZE"
-config.font = wezterm.font("Hack Nerd Font")
-
--- Smart Splits plugin
--- Used for moving between panes and between nvim and wezterm
-local smart_splits = wezterm.plugin.require("https://github.com/mrjones2014/smart-splits.nvim")
-smart_splits.apply_to_config(config)
 
 return config
