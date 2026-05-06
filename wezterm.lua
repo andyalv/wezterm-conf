@@ -9,6 +9,9 @@ require("config.shell").apply_to_config(config)
 require("config.appearance").apply_to_config(config)
 require("config.keymaps").apply_to_config(config)
 
+-- Register events
+require("config.appearance").register_events()
+
 -- Plugins
 -- require("config.plugins.theme_rotator").apply_to_config(config)
 require("plugins.bar").apply_to_config(config)
